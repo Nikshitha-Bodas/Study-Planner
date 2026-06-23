@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+
+Study Timetable
+
+</title>
+
+<link rel="stylesheet"
+
+href="{{ url_for('static',
+
+filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+{{ name }}'s Weekly Timetable
+
+</h1>
+
+<table>
+
+<tr>
+
+<th>
+
+Day
+
+</th>
+
+{% for i in range(max_periods) %}
+
+<th>
+
+Period {{ i+1 }}
+
+</th>
+
+{% endfor %}
+
+</tr>
+
+{% for day in timetable %}
+
+<tr>
+
+<td>
+
+<b>
+
+{{ day.day }}
+
+</b>
+
+<br>
+
+{{ day.date }}
+
+</td>
+
+{% for item in day.schedule %}
+
+<td>
+
+{{ item.subject }}
+
+<br>
+
+({{ item.hours }} hrs)
+
+</td>
+
+{% endfor %}
+
+{% for i in range(max_periods-day.schedule|length) %}
+
+<td>
+
+-
+
+</td>
+
+{% endfor %}
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/download">
+
+<button>
+
+Download PDF
+
+</button>
+
+</a>
+
+<br><br>
+
+<p>
+
+💡 <b>Note:</b>
+
+If time remains, revise previously studied topics or practice a short mock test.
+
+</p>
+
+</div>
+
+</body>
+
+</html>

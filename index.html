@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Smart Personalized Study Planner</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+Smart Personalized Study Planner
+
+</h1>
+
+<form action="/generate" method="POST">
+
+<label>
+
+Student Name
+
+</label>
+
+<input
+
+type="text"
+
+name="student_name"
+
+placeholder="Enter Student Name"
+
+required>
+
+<label>
+
+Number Of Subjects
+
+</label>
+
+<input
+
+type="number"
+
+id="number_of_subjects"
+
+name="number_of_subjects"
+
+placeholder="Enter Number Of Subjects"
+
+required>
+
+<label>
+
+Study Hours Per Day
+
+</label>
+
+<input
+
+type="number"
+
+name="study_hours"
+
+placeholder="Enter Study Hours"
+
+min="1"
+
+max="12"
+
+required>
+
+<div id="subjects">
+
+</div>
+
+<br>
+
+<button
+
+id="subjectButton"
+
+type="button"
+
+onclick="createSubjects()">
+
+Subjects
+
+</button>
+
+<div id="generateButton">
+
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+function createSubjects(){
+
+document.getElementById(
+
+"subjectButton"
+
+).style.display="none"
+
+let count=
+
+document.getElementById(
+
+"number_of_subjects"
+
+).value
+
+let box=
+
+document.getElementById(
+
+"subjects"
+
+)
+
+let generate=
+
+document.getElementById(
+
+"generateButton"
+
+)
+
+box.innerHTML=""
+
+generate.innerHTML=""
+
+for(let i=1;i<=count;i++){
+
+box.innerHTML +=`
+
+<h3>
+
+Subject ${i}
+
+</h3>
+
+<label>
+
+Subject Name
+
+</label>
+
+<input
+
+type="text"
+
+name="subject${i}"
+
+required>
+
+<label>
+
+Exam Date
+
+</label>
+
+<input
+
+type="date"
+
+name="exam${i}"
+
+required>
+
+<label>
+
+Difficulty Level
+
+</label>
+
+<select
+
+name="difficulty${i}">
+
+<option value="Easy">
+
+Easy
+
+</option>
+
+<option value="Medium">
+
+Medium
+
+</option>
+
+<option value="Hard">
+
+Hard
+
+</option>
+
+</select>
+
+<hr>
+
+`
+
+}
+
+generate.innerHTML=`
+
+<br>
+
+<button
+
+type="submit">
+
+Generate Timetable
+
+</button>
+
+`
+
+}
+
+</script>
+
+</body>
+
+</html>
